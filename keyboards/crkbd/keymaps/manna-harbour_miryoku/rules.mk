@@ -2,3 +2,4 @@ OLED_ENABLE = yes
 SPLIT_KEYBOARD = yes
 LTO_ENABLE = yes
 RGB_ENABLE = no
+WPM_ENABLE = yes
