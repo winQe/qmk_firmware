@@ -184,14 +184,13 @@ void oled_render_layer_state(void) {
             break;
     }
 
-    oled_write("\n", false);
+    oled_write("\n\n", false);
 }
 
 void oled_render_led_state(void) {
     led_t led_state = host_keyboard_led_state();
 
-    oled_write(led_state.caps_lock ? "CAPS " : "\n", false);
-    oled_write(led_state.scroll_lock ? "SCROLL " : "\n", false);
+    oled_write(led_state.caps_lock ? "CAPS\n" : "\n", false);
     oled_write("\n", false);
 }
 
@@ -199,10 +198,10 @@ void oled_render_mod_state(void) {
     oled_write("\n", false);
     uint8_t mod_state = get_mods();
 
-    oled_write((mod_state & MOD_MASK_SHIFT) ? "SHIFT " : "\n", false);
-    oled_write((mod_state & MOD_MASK_CTRL) ? "CTRL " : "\n", false);
-    oled_write((mod_state & MOD_MASK_ALT) ? "ALT " : "\n", false);
-    oled_write((mod_state & MOD_MASK_GUI) ? "GUI" : "\n", false);
+    oled_write((mod_state & MOD_MASK_SHIFT) ? "SHIFT\n" : "\n", false);
+    oled_write((mod_state & MOD_MASK_CTRL) ? "CTRL\n" : "\n", false);
+    oled_write((mod_state & MOD_MASK_ALT) ? "ALT\n" : "\n", false);
+    oled_write((mod_state & MOD_MASK_GUI) ? "GUI\n" : "\n", false);
     oled_write("\n", false);
 }
 
@@ -221,7 +220,7 @@ bool oled_task_user(void) {
         oled_render_layer_state();
         oled_render_mod_state();
         oled_render_led_state();
-        render_luna(0, 12);
+        render_luna(0, 13);
     } else {
         oled_render_logo();
     }
