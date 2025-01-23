@@ -115,7 +115,7 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
         if (led_usb_state.caps_lock || (mod_state & MOD_MASK_SHIFT)) {
             oled_write_raw_P(bark[current_frame], ANIM_SIZE);
 
-        } else if (isSneaking) {
+        } else if (isSneaking || (mod_state & MOD_MASK_CTRL)) {
             oled_write_raw_P(sneak[current_frame], ANIM_SIZE);
 
         } else if (current_wpm <= MIN_WALK_SPEED) {
@@ -168,19 +168,19 @@ void oled_render_layer_state(void) {
             oled_write("Media", false);
             break;
         case NAV:
-            oled_write("Navigation", false);
+            oled_write("Nav", false);
             break;
         case MOUSE:
             oled_write("Mouse", false);
             break;
         case SYM:
-            oled_write("Symbol", false);
+            oled_write("Sym", false);
             break;
         case NUM:
-            oled_write("Number", false);
+            oled_write("Num", false);
             break;
         case FUN:
-            oled_write("Function", false);
+            oled_write("Func", false);
             break;
     }
 
@@ -190,8 +190,8 @@ void oled_render_layer_state(void) {
 void oled_render_led_state(void) {
     led_t led_state = host_keyboard_led_state();
 
-    oled_write(led_state.caps_lock ? "CAPS " : "      ", false);
-    oled_write(led_state.scroll_lock ? "SCROLL " : "       ", false);
+    oled_write(led_state.caps_lock ? "CAPS " : "\n", false);
+    oled_write(led_state.scroll_lock ? "SCROLL " : "\n", false);
     oled_write("\n", false);
 }
 
@@ -199,10 +199,10 @@ void oled_render_mod_state(void) {
     oled_write("\n", false);
     uint8_t mod_state = get_mods();
 
-    oled_write((mod_state & MOD_MASK_SHIFT) ? "SHIFT " : "      ", false);
-    oled_write((mod_state & MOD_MASK_CTRL) ? "CTRL " : "     ", false);
-    oled_write((mod_state & MOD_MASK_ALT) ? "ALT " : "    ", false);
-    oled_write((mod_state & MOD_MASK_GUI) ? "GUI" : "   ", false);
+    oled_write((mod_state & MOD_MASK_SHIFT) ? "SHIFT " : "\n", false);
+    oled_write((mod_state & MOD_MASK_CTRL) ? "CTRL " : "\n", false);
+    oled_write((mod_state & MOD_MASK_ALT) ? "ALT " : "\n", false);
+    oled_write((mod_state & MOD_MASK_GUI) ? "GUI" : "\n", false);
     oled_write("\n", false);
 }
 
@@ -221,7 +221,7 @@ bool oled_task_user(void) {
         oled_render_layer_state();
         oled_render_mod_state();
         oled_render_led_state();
-        render_luna(0, 13);
+        render_luna(0, 12);
     } else {
         oled_render_logo();
     }
