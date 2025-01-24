@@ -152,7 +152,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
-enum layers { BASE, BUTTON, MEDIA, NAV, MOUSE, SYM, NUM, FUN };
+enum layers { BASE, BUTTON, MEDIA, NAV, SYM_L, SYM_R, NUM, FUN };
 
 void oled_render_layer_state(void) {
     oled_write("Layer\n", false);
@@ -170,11 +170,11 @@ void oled_render_layer_state(void) {
         case NAV:
             oled_write("Nav", false);
             break;
-        case MOUSE:
-            oled_write("Mouse", false);
+        case SYM_L:
+            oled_write("Sym L", false);
             break;
-        case SYM:
-            oled_write("Sym", false);
+        case SYM_R:
+            oled_write("Sym R", false);
             break;
         case NUM:
             oled_write("Num", false);
