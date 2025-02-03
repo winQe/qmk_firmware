@@ -23,3 +23,4 @@ XXX,  K20,  K21,  K22,  K23,  K24,         K25,  K26,  K27,  K28,  K29,  XXX , \
 )
 
 #define SPLIT_WPM_ENABLE
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
