@@ -4,3 +4,4 @@ LTO_ENABLE = yes
 RGB_ENABLE = no
 WPM_ENABLE = yes
 CAPS_WORD_ENABLE = yes
+COMBO_ENABLE = yes
